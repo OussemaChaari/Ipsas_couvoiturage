@@ -6,6 +6,7 @@ use App\Entity\Voiture;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class VoitureType extends AbstractType
 {
@@ -16,9 +17,7 @@ class VoitureType extends AbstractType
             ->add('clim')
             ->add('fumeur')
             ->add('bagage')
-            ->add('photo')
-            ->add('idCh')
-            ->add('trajets')
+            ->add('photo', FileType::class, ['label' => 'Image de la voiture(png)'])
         ;
     }
 

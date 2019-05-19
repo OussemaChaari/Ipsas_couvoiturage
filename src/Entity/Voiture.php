@@ -112,12 +112,12 @@ class Voiture
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
 
@@ -161,5 +161,10 @@ class Voiture
             $trajet->removeIdVoiture($this);
         }
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->modele;
     }
 }

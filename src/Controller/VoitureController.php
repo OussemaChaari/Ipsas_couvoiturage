@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/voiture")
@@ -28,18 +29,22 @@ class VoitureController extends AbstractController
     /**
      * @Route("/new", name="voiture_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,UserInterface $user = null): Response
     {
         $voiture = new Voiture();
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $voiture->getPhoto();
+            $fileName= md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'), $fileName);
+            $voiture->setPhoto($fileName);
+            $voiture->setIdCh($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($voiture);
             $entityManager->flush();
-
-            return $this->redirectToRoute('voiture_index');
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('voiture/new.html.twig', [
