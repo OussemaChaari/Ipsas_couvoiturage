@@ -49,7 +49,7 @@ class Trajet
     private $reservations;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="trajets")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="trajets", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $voiture;

@@ -8,6 +8,9 @@
         </title>
         {% block stylesheets %}{% endblock %}
         <link href="/resources/css/bootstrap.css" rel="stylesheet">
+        <script src="/resources/js/jquery.js"></script>
+        <script src="/resources/js/popper.js"></script>
+        <script src="/resources/js/bootstrap.js"></script>
     </head>
     <body>
         {{ render(controller(
@@ -16,10 +19,6 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
-        {% block javascripts %}
-            <script src="/resources/js/jquery.js"></script>
-            <script src="/resources/js/popper.js"></script>
-            <script src="/resources/js/bootstrap.js"></script>
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

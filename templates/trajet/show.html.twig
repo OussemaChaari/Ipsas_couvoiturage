@@ -1,42 +1,111 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Trajet{% endblock %}
+{% block title %}Trajet
+{% endblock %}
 
 {% block body %}
     <h1>Trajet</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <img alt="" src="/uploads/{{trajet.voiture.photo}}" srcset="" style="max-width: 100%">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Voiture</th>
+                        <td>{{ trajet.voiture.modele }}</td>
+                    </tr>
+                    <tr>
+                        <th>Voiture</th>
+                        <td>{{ trajet.voiture.modele }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fumeur</th>
+                        <td>
+                            {% if trajet.voiture.fumeur %}
+                                <span class="text-success">Oui</span>
+                            {% else %}
+                                <span class="text-danger">Non</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bagage</th>
+                        <td>
+                            {% if trajet.voiture.bagage %}
+                                <span class="text-success">Oui</span>
+                            {% else %}
+                                <span class="text-danger">Non</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Climatitsation</th>
+                        <td>
+                            {% if trajet.voiture.clim %}
+                                <span class="text-success">Oui</span>
+                            {% else %}
+                                <span class="text-danger">Non</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>VilleDep</th>
+                        <td>{{ trajet.villeDep }}</td>
+                    </tr>
+                    <tr>
+                        <th>VilleArrivee</th>
+                        <td>{{ trajet.villeArrivee }}</td>
+                    </tr>
+                    <tr>
+                        <th>DateDep</th>
+                        <td>{{ trajet.dateDep ? trajet.dateDep|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>HeureDep</th>
+                        <td>{{ trajet.heureDep ? trajet.heureDep|date('H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>PlaceLibres</th>
+                        <td>{{ trajet.placeLibres }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Chauffeur</th>
+                        <td>{{ trajet.voiture.idCh.nom }}
+                            {{ trajet.voiture.idCh.prenom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ trajet.voiture.idCh.age }}</td>
+                    </tr>
+                    <tr>
+                        <th>CIN</th>
+                        <td>{{ trajet.voiture.idCh.cin }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephone</th>
+                        <td>{{ trajet.voiture.idCh.tel }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <td>{{ trajet.voiture.idCh.ville }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ trajet.id }}</td>
-            </tr>
-            <tr>
-                <th>VilleDep</th>
-                <td>{{ trajet.villeDep }}</td>
-            </tr>
-            <tr>
-                <th>VilleArrivee</th>
-                <td>{{ trajet.villeArrivee }}</td>
-            </tr>
-            <tr>
-                <th>DateDep</th>
-                <td>{{ trajet.dateDep ? trajet.dateDep|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>HeureDep</th>
-                <td>{{ trajet.heureDep ? trajet.heureDep|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>PlaceLibres</th>
-                <td>{{ trajet.placeLibres }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <a href="{{ path('dashboard') }}">back to list</a>
 
-    <a href="{{ path('trajet_index') }}">back to list</a>
-
-    <a href="{{ path('trajet_edit', {'id': trajet.id}) }}">edit</a>
-
-    {{ include('trajet/_delete_form.html.twig') }}
 {% endblock %}
