@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+    <div class="container">
+        <a class="navbar-brand" href="/">Couvoiturage</a>
+        <button class="navbar-toggler" data-target="#mobile-nav" data-toggle="collapse" type="button">
+            <span class="navbar-toggle-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mobile-nav">
+            <ul class="navbar-nav ml-auto">
+                {% if user != null %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    {% if 'ROLE_CHAUFFEUR' in user.getRoles() %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/trajet/new">Ajouter un nouveau trajet</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/passager/history">Mon historique</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div></nav>

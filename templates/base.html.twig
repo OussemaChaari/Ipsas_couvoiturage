@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Welcome!
+            {% endblock %}
+        </title>
+        {% block stylesheets %}{% endblock %}
+        <style>
+            button[type="submit"] {
+                background-color: #9954BB
+            }
+        </style>
+        <link href="/resources/css/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        {{ render(controller(
+        'App\\Controller\\NavbarController::index'
+    )) }}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}
+            <script src="/resources/js/jquery.js"></script>
+            <script src="/resources/js/popper.js"></script>
+            <script src="/resources/js/bootstrap.js"></script>
+        {% endblock %}
+    </body>
+</html>

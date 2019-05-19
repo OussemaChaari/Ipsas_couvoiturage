@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!
+{% endblock %}
+
+{% block body %}
+    <style></style>
+    {% if error %}
+        <div class="alert alert-danger">
+            {{error.messageKey}}
+        </div>
+    {% endif %}
+
+    <h1 class="text-center">Welcome</h1>
+    <div class="container pt-3">
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-10 col-md-6">
+                <div class="card border-info">
+                    <div class="card-header">Sign in to continue</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <img src="https://placeimg.com/128/128/tech/sepia">
+                                <h4 class="text-center">Couvoiturage</h4>
+                            </div>
+                            <div class="col-md-8">
+                                <form class="form-signin" action="{{ path('login')}}" method="POST">
+                                    <input autofocus class="form-control mb-2" name="_username" placeholder="Email" value="{{ last_username }}" required type="text">
+                                    <input class="form-control mb-2" name="_password" placeholder="Password" required type="password">
+                                    <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Sign in</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="float-right" href="/register">Create an account
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
