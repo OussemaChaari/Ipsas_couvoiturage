@@ -17,7 +17,7 @@ class TrajetType extends AbstractType
             ->add('dateDep')
             ->add('heureDep')
             ->add('placeLibres')
-            ->add('idVoiture')
+            ->add('voiture')
         ;
     }
 

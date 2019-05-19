@@ -50,7 +50,7 @@ class Voiture
     private $idCh;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Trajet", mappedBy="idVoiture")
+     * @ORM\OneToMany(targetEntity="App\Entity\Trajet", mappedBy="voiture", orphanRemoval=true)
      */
     private $trajets;
 
@@ -160,7 +160,6 @@ class Voiture
             $this->trajets->removeElement($trajet);
             $trajet->removeIdVoiture($this);
         }
-
         return $this;
     }
 }

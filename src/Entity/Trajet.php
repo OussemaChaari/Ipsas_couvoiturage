@@ -44,18 +44,18 @@ class Trajet
     private $placeLibres;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Voiture", inversedBy="trajets")
-     */
-    private $idVoiture;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="idTraj")
      */
     private $reservations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="trajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $voiture;
+
     public function __construct()
     {
-        $this->idVoiture = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
 
@@ -125,32 +125,6 @@ class Trajet
     }
 
     /**
-     * @return Collection|Voiture[]
-     */
-    public function getIdVoiture(): Collection
-    {
-        return $this->idVoiture;
-    }
-
-    public function addIdVoiture(Voiture $idVoiture): self
-    {
-        if (!$this->idVoiture->contains($idVoiture)) {
-            $this->idVoiture[] = $idVoiture;
-        }
-
-        return $this;
-    }
-
-    public function removeIdVoiture(Voiture $idVoiture): self
-    {
-        if ($this->idVoiture->contains($idVoiture)) {
-            $this->idVoiture->removeElement($idVoiture);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Reservation[]
      */
     public function getReservations(): Collection
@@ -177,6 +151,18 @@ class Trajet
                 $reservation->setIdTraj(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVoiture(): ?Voiture
+    {
+        return $this->voiture;
+    }
+
+    public function setVoiture(?Voiture $voiture): self
+    {
+        $this->voiture = $voiture;
 
         return $this;
     }

@@ -34,14 +34,13 @@ class PassagerController extends AbstractController
         $passager = new Passager();
         $form = $this->createForm(Passager1Type::class, $passager);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $passager->setPassword($encoder->encodePassword($passager,$passager->getPassword()));
+            $passager->setPassword($encoder->encodePassword($passager, $passager->getPassword()));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($passager);
             $entityManager->flush();
-
-            return $this->redirectToRoute('passager_index');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('passager/new.html.twig', [
@@ -87,7 +86,7 @@ class PassagerController extends AbstractController
      */
     public function delete(Request $request, Passager $passager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$passager->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $passager->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($passager);
             $entityManager->flush();

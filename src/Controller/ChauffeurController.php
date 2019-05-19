@@ -41,7 +41,7 @@ class ChauffeurController extends AbstractController
             $entityManager->persist($chauffeur);
             $entityManager->flush();
 
-            return $this->redirectToRoute('chauffeur_index');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('chauffeur/new.html.twig', [

@@ -10,18 +10,14 @@
             <h1>
                 Chauffeur ?
             </h1>
-            {{ render(controller(
-        'App\\Controller\\ChauffeurController::new'
-    ))}}
+            {{ include('chauffeur/_form.html.twig') }}
         </div>
 
         <div class="col-md-6">
             <h1>
                 Passager ?
             </h1>
-            {{ render(controller(
-        'App\\Controller\\PassagerController::new'
-    ))}}
+            {{ include('passager/_form.html.twig') }}
         </div>
     </div>
     <a href="/login">Login</a>
